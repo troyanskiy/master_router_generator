@@ -1,0 +1,9 @@
+builders:
+  master_router:
+    target: ":master_router"
+    import: "package:master_router_generator/builder.dart"
+    builder_factories: ["masterRouter"]
+    build_extensions: {".dart": [".master_router.g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
