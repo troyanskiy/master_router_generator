@@ -12,9 +12,13 @@ dependencies:
   build: ^2.0.0
   source_gen: ^1.0.0
   master_router:
-    path: ../master_router/
+    git:
+      url: https://github.com/troyanskiy/master_router.git
+      ref: master
   master_router_annotation:
-    path: ../master_router_annotation/
+    git:
+      url: https://github.com/troyanskiy/master_router_annotation.git
+      ref: master
   analyzer: ">=0.40.6"
   recase: ^3.0.1
 
