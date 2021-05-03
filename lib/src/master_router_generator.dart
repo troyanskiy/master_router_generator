@@ -111,10 +111,10 @@ class MasterRouterGenerator extends GeneratorForAnnotation<MasterRouteParams> {
       }
 
       param = MasterRouteParam(
-        ignore: cr.read('ignore').literalValue as bool,
-        isQueryParam: cr.read('isQueryParam').literalValue as bool,
-        isPathParam: cr.read('isPathParam').literalValue as bool,
-        name: cr.read('name').literalValue as String,
+        ignore: (cr.read('ignore').literalValue as bool?) ?? false,
+        isQueryParam: (cr.read('isQueryParam').literalValue as bool?) ?? false,
+        isPathParam: (cr.read('isPathParam').literalValue as bool?) ?? false,
+        name: cr.read('name').literalValue as String?,
         enumTransform: enumTransform,
       );
     }
@@ -153,7 +153,7 @@ class MasterRouterGenerator extends GeneratorForAnnotation<MasterRouteParams> {
     buffer ??= StringBuffer();
 
     buffer.write(
-      '${element.name} _\$${element.name}FromMaps(Map<String, String> pathParams, Map<String, String> queryParams,) {',
+      '${element.name} \$${element.name}Builder(Map<String, String> pathParams, Map<String, String> queryParams,) {',
     );
 
     buffer.write('return ${element.name}(');
