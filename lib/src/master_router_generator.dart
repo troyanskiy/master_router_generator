@@ -59,18 +59,22 @@ class MasterRouterGenerator extends GeneratorForAnnotation<MasterRouteParams> {
   }) {
     fields ??= [];
 
-    fields.addAll(
-      element.fields
-          .where((f) {
-            if (f.isPublic && !f.isStatic && !f.isAbstract && !f.isSynthetic) {
-              return fields!.indexWhere((f2) => f2.field.name == f.name) == -1;
-            }
+    element.fields
+        .where((f) {
+          if (f.isPublic && !f.isStatic && !f.isAbstract && !f.isSynthetic) {
+            return fields!.indexWhere((f2) => f2.field.name == f.name) == -1;
+          }
 
-            return false;
-          })
-          .map(_mapField)
-          .where((f) => f != null) as Iterable<FieldWrapper>,
-    );
+          return false;
+        })
+        .forEach((FieldElement fieldElement) {
+
+          final field = _mapField(fieldElement);
+
+          if (field != null) {
+            fields!.add(field);
+          }
+        });
 
     final superElement = element.supertype?.element;
 
